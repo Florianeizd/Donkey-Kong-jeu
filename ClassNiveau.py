@@ -32,6 +32,7 @@ class Niveau:
         mur = pygame.image.load(image_mur).convert()
         depart= pygame.image.load(image_depart).convert()
         arrivee = pygame.image.load(image_arrivee).convert()
+        enemy = pygame.image.load(image_enemy).convert()
 
         #On parcourt la liste du niveau
         num_ligne = 0
@@ -46,6 +47,8 @@ class Niveau:
                     screen.blit(mur, (x,y))
                 elif sprite == 'd':		   #d = Départ
                     screen.blit(depart, (x,y))
+                elif sprite == 'e':		   #e = enemy
+                    screen.blit(enemy, (x,y))
                 elif sprite == 'a':		   #a = Arrivée
                     screen.blit(arrivee, (x,y))
                 num_case += 1

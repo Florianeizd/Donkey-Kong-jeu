@@ -1,36 +1,26 @@
 """
 Jeu Donkey Kong Labyrinthe
 Jeu dans lequel on doit déplacer DK jusqu'aux bananes à travers un labyrinthe.
-
-Script Python
-Fichiers : dkjeux.py, classDk.py, constantes.py, n1, n2 + images
 """
 # pip install pygame
 import pygame
 from pygame.locals import *
-
 from classDk import Player
 from ClassNiveau import Niveau
+from classEnemy import Enemy
 from constantes import *
-from pygame import mixer
-
 
 # initialise pygame
 pygame.init()
 
-# # initialise le mixer
-# mixer.music.load("son/son.ogg")
-# mixer.music.play(-1)
-
 #creee une fenetre 
-#plein ecran 
-#screen = pygame.display.set_mode((1080, 720))
 screen = pygame.display.set_mode((cote_fenetre, cote_fenetre))
 #Icone
 icone = pygame.image.load(image_icone)
 pygame.display.set_icon(icone)
 #Titre
 pygame.display.set_caption(titre_fenetre)
+
 
 #BOUCLE PRINCIPALE
 continuer=1
@@ -119,11 +109,12 @@ while continuer:
         screen.blit(fond, (0,0))
         niveau.afficher(screen)
         screen.blit(dk.direction, (dk.x, dk.y)) #dk.direction contient l'image dans la bonne direction
+
+        
         pygame.display.flip()
 
         #Victoire -> Retour à l'accueil
         if niveau.structure[dk.case_y][dk.case_x] == 'a':
             continuer_jeu = 0
-
-# # vide le cache 
-# pygame.quit()
+            vic = pygame.image.load(image_victoire).convert()
+            screen.blit(vic, (0,0))
